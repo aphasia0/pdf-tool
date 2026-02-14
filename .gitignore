@@ -1,0 +1,31 @@
+# Binaries
+pdf-decrypt-api
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test files
+*.pdf
+test_*.py
+test_*.go
+test_content.txt
+
+# Go
+*.out
+go.work
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log

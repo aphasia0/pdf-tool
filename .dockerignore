@@ -1,0 +1,14 @@
+# Ignore test files
+*.pdf
+test_*.py
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore documentation
+README.md
+
+# Ignore temporary files
+*.tmp
+*.log
