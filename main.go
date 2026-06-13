@@ -12,22 +12,24 @@ import (
 	"github.com/pdfcpu/pdfcpu/pkg/pdfcpu/model"
 )
 
-// CORS middleware to allow requests from localhost:4200
+// CORS middleware
 func corsMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	allowedOrigin := os.Getenv("CORS_ORIGIN")
+	if allowedOrigin == "" {
+		allowedOrigin = "http://localhost:4200"
+	}
+
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Set CORS headers
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:4200")
+		w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Accept")
 		w.Header().Set("Access-Control-Max-Age", "3600")
 
-		// Handle preflight OPTIONS request
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
 		}
 
-		// Call the next handler
 		next(w, r)
 	}
 }
